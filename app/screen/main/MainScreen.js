@@ -53,7 +53,7 @@ export default class MainScreen extends React.PureComponent {
 
   renderLabel = (props) => {
     const route = props.route
-    const iconColor = this.state.index == route.index ? 'white' : 'black'
+    const iconColor = this.state.index == route.index ? 'white' : 'gray'
     const iconName = this.icons[route.index] 
     const iconTitle = this.titles[route.index] 
 
@@ -88,7 +88,7 @@ export default class MainScreen extends React.PureComponent {
   renderTabBar = (props) => {
     return <TabBar
       {...props}
-      style={{ backgroundColor: 'gray', height: 64 }}
+      style={{ backgroundColor: '#84E3FF', height: 64 }}
       indicatorStyle={{ backgroundColor: null }}
       renderLabel={this.renderLabel}
     />
