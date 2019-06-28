@@ -10,7 +10,7 @@ import PairItem from '../../component/list/PairItem'
 export default class PairList extends React.PureComponent {
 
   onPressItem = (item) => {
-    this.props.navigation.navigate("PairCharts")
+    this.props.navigation.navigate("PairCharts", { title: 'VND - USD' })
   }
 
   keyExtractor = (item, index) => "pairlist-" + index
