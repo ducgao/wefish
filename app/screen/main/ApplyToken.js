@@ -6,8 +6,16 @@ import {
 
 import NTInput from '../../component/NTInput'
 import NTButton from '../../component/NTButton'
+import AppRepository from '../../core/AppRepository'
 
 export default class ApplyToken extends React.PureComponent {
+
+  appRepository = AppRepository.instance()
+
+  applyToken = () => {
+    this.appRepository.fetchPairList()
+  }
+
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center' }}>
@@ -18,7 +26,7 @@ export default class ApplyToken extends React.PureComponent {
             alignSelf: 'center'
           }} 
           title="Đăng ký token" 
-          onPress={this._handleOnClickLogin}
+          onPress={this.applyToken}
         />
       </View>
     )
