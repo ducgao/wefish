@@ -30,7 +30,7 @@ export default class MainScreen extends React.PureComponent {
   ]
 
   state = {
-    index: 0,
+    index: 1,
     routes: [
       { index: 0, key: 'applytoken', title: this.titles[0] },
       { index: 1, key: 'pairlist', title: this.titles[1] }

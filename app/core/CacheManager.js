@@ -1,7 +1,7 @@
 import  {
   AsyncStorage
 } from 'react-native'
-import { API_CACHE_STORE_KEY } from '../common/constants'
+import { API_CACHE_STORE_KEY } from '../common/Constants'
 export default class CacheManager {
   static _instance = null
   static instance() {

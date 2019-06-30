@@ -39,5 +39,6 @@ export default class AppRepository {
       this.pairList = list
       this.notify()
     })
+    .catch(e => { alert(e) })
   }
 }

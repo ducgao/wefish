@@ -19,6 +19,7 @@ export default class PairList extends React.PureComponent {
 
   componentDidMount() {
     this.appRepository.addObserve(this.onDataChanged)
+    this.appRepository.fetchPairList()
   }
 
   componentWillUnmount() {
@@ -30,14 +31,14 @@ export default class PairList extends React.PureComponent {
   }
 
   onPressItem = (item) => {
-    this.props.navigation.navigate("PairCharts", { title: 'VND - USD' })
+    this.props.navigation.navigate("PairCharts", { title: item.title, url: item.actionUrl })
   }
 
   keyExtractor = (item, index) => "pairlist-" + index
 
   renderItem = ({item}) => (
     <PairItem
-      id={item}
+      id={item.id}
       data={item}
       onPress={this.onPressItem}
     />
@@ -58,7 +59,9 @@ export default class PairList extends React.PureComponent {
 
     return (
       <FlatList
-        style={{ flex: 1, marginTop: 12, paddingTop: 12 }}
+        style={{ flex: 1, marginTop: 12, paddingTop: 12, paddingBottom: 64 }}
+        contentContainerStyle={{ paddingBottom: 32 }}
+        showsVerticalScrollIndicator={false}
         data={this.state.pairlist}
         keyExtractor={this.keyExtractor}
         renderItem={this.renderItem}

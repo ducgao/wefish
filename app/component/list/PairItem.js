@@ -28,7 +28,7 @@ export default class PairItem extends React.PureComponent {
         <Text style={{
           fontSize: 14,
           fontWeight: '500'
-        }}>VND - USD</Text>
+        }}>{this.props.data.title}</Text>
         <Ionicons 
           style={{
             position: 'absolute',

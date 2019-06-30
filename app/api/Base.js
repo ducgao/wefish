@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native'
 import { NavigationActions, StackActions } from 'react-navigation'
-import { ACCESS_TOKEN_STORE_KEY } from '../common/constants'
-import CacheManager from '../core/cachemanager'
+import { ACCESS_TOKEN_STORE_KEY } from '../common/Constants'
+import CacheManager from '../core/CacheManager'
 
 export default class Base {
   navigation = null
@@ -37,10 +37,8 @@ export default class Base {
   call(method, url, body, binder) {
     const headers = this.accessToken == null ? {
       'Accept': 'application/json',
-      'Content-Type': 'multipart/form-data'
     } : {
       'Accept': 'application/json',
-      'Content-Type': 'multipart/form-data',
       'Authorization': 'Bearer ' + this.accessToken
     }
 
@@ -57,7 +55,7 @@ export default class Base {
       })
       .then(([code, data]) => {
         if (code == 401) {
-          this._clearApp()
+          rejecter(code)
         } else if (code == 200) {
           this.cacheManager.cacheApiResponse(method, body, headers, url, data)
           resolve(binder.bind(data))
