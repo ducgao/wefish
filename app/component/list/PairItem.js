@@ -17,7 +17,7 @@ export default class PairItem extends React.PureComponent {
   render() {
     return (
       <TouchableOpacity style={{
-        backgroundColor: '#ECD4FF',
+        backgroundColor: '#ACE7FF',
         height: 44,
         borderRadius: 6,
         marginBottom: 8,
