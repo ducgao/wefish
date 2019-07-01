@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import OneSignal from 'react-native-onesignal'
 
 import ApplyToken from './ApplyToken'
 import PairList from './PairList'
@@ -45,6 +46,34 @@ export default class MainScreen extends React.PureComponent {
     this.pairListInstance = () => <PairList 
       navigation={this.props.navigation} 
     />
+
+    OneSignal.init("4e113626-1948-4c7d-b86f-0fd25baa0e37")
+  }
+
+  componentDidMount() {
+    OneSignal.addEventListener('received', this.onReceived)
+    OneSignal.addEventListener('opened', this.onOpened)
+  }
+
+  componentWillUnmount() {
+    OneSignal.removeEventListener('received', this.onReceived)
+    OneSignal.removeEventListener('opened', this.onOpened)
+  }
+
+  onReceived(notification) {
+    console.log("Notification received: ", notification)
+  }
+
+  onOpened = (openResult) => {
+    console.log('Message: ', openResult.notification.payload.body)
+    console.log('Data: ', openResult.notification.payload.additionalData)
+    console.log('isActive: ', openResult.notification.isAppInFocus)
+    console.log('openResult: ', openResult)
+
+    if (openResult.notification.payload.additionalData) {
+      let data = openResult.notification.payload.additionalData
+      this.props.navigation.navigate("PairCharts", { title: data.action_title, url: data.action_url })
+    }
   }
 
   onTabIndexChanged = (nextIndex) => {

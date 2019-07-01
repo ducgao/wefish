@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -44,6 +43,7 @@
 		F1D1B5ADBD1442898E99E47D /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBC2A814079B4926956CFF34 /* MaterialIcons.ttf */; };
 		F251851838C94966A5E47B64 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C96445E677344A309E492FB1 /* FontAwesome.ttf */; };
 		F2B8CB41C231475CABA3AD93 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FED0A4BEC1648ECAF3516F5 /* Zocial.ttf */; };
+		33AF5544567C499EB72CB01E /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5A4A62697DB4020BEA5A16B /* libRCTOneSignal.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -408,6 +408,8 @@
 		E1CC0B6520A64DF68DBE2D15 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		DBD10DACABB44EB29D3F1AC4 /* RCTOneSignal.xcodeproj */ = {isa = PBXFileReference; name = "RCTOneSignal.xcodeproj"; path = "../node_modules/react-native-onesignal/ios/RCTOneSignal.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		E5A4A62697DB4020BEA5A16B /* libRCTOneSignal.a */ = {isa = PBXFileReference; name = "libRCTOneSignal.a"; path = "libRCTOneSignal.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -432,6 +434,7 @@
 				69E024349F3E4648AE4CA058 /* libRNReanimated.a in Frameworks */,
 				E380A881123549318ADA8650 /* libRNVectorIcons.a in Frameworks */,
 				7F869A8ADBCD4E9DA743B7AC /* libRNPhotoView.a in Frameworks */,
+				33AF5544567C499EB72CB01E /* libRCTOneSignal.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,6 +627,7 @@
 				20F06BC54C8B4880B0A9CE69 /* RNReanimated.xcodeproj */,
 				5F1C776568E14E73A8FD88C6 /* RNVectorIcons.xcodeproj */,
 				A8BD9DE20A864B98B6B154CD /* RNPhotoView.xcodeproj */,
+				DBD10DACABB44EB29D3F1AC4 /* RCTOneSignal.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1225,11 +1229,13 @@
 					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
 				);
 				INFOPLIST_FILE = NTrade/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/NTrade\"",
 					"\"$(SRCROOT)/NTrade\"",
 					"\"$(SRCROOT)/NTrade\"",
 					"\"$(SRCROOT)/NTrade\"",
@@ -1256,11 +1262,13 @@
 					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
 				);
 				INFOPLIST_FILE = NTrade/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/NTrade\"",
 					"\"$(SRCROOT)/NTrade\"",
 					"\"$(SRCROOT)/NTrade\"",
 					"\"$(SRCROOT)/NTrade\"",
