@@ -81,7 +81,6 @@ export default class PairCharts extends React.PureComponent {
 
   pressNo = () => {
     let currentImage = this.state.images[this.state.currentImageIndex]
-    alert(currentImage)
     this.api.justCall(currentImage.buttonNoUrl)
     this.refresh()
   }
@@ -104,17 +103,17 @@ export default class PairCharts extends React.PureComponent {
     this.refresh()
   }
 
-  renderAction(title, action) {
+  renderAction(title, enable, action) {
     return (
       <TouchableOpacity style={{
         flex: 1,
         height: 60,
         justifyContent: 'center'
-      }} onPress={action}>
+      }} onPress={action} disabled={!enable}>
         <View style={{
           alignSelf: 'center',
           justifyContent: 'center',
-          backgroundColor: '#FFABAB',
+          backgroundColor: enable ? '#FFABAB' : '#b8b8b8',
           height: 60,
           width: 60
         }}>
@@ -130,6 +129,7 @@ export default class PairCharts extends React.PureComponent {
   }
 
   renderActions() {
+    let currentImage = this.state.images[this.state.currentImageIndex]
     return (
       <View style={{ 
         position: 'absolute',
@@ -139,10 +139,10 @@ export default class PairCharts extends React.PureComponent {
         marginLeft: 16,
         marginRight: 16,
       }} >
-        {this.renderAction("No", this.pressNo)}
-        {this.renderAction("Buy Only", this.pressBuy)}
-        {this.renderAction("Sell Only", this.pressSell)}
-        {this.renderAction("All In", this.pressAll)}
+        {this.renderAction("No", currentImage.buttonNo, this.pressNo)}
+        {this.renderAction("Buy Only", currentImage.buttonBuyOnly, this.pressBuy)}
+        {this.renderAction("Sell Only", currentImage.buttonSellOnly, this.pressSell)}
+        {this.renderAction("All In", currentImage.buttonAllIn, this.pressAll)}
       </View>
     )
   }
