@@ -4,6 +4,7 @@ import {
   PAIR_CHARTS
 } from './Fakedata'
 import PairList from "./binder/PairList";
+import PairDetailList from "./binder/PairDetailList";
 
 export default class Api extends Base {
   static _instance = null
@@ -21,10 +22,7 @@ export default class Api extends Base {
   }
 
   getPairCharts(url) {
-    return new Promise((resolve, rejecter) => {
-      setTimeout(() => {
-        resolve(PAIR_CHARTS)
-      }, 1000)
-    })
+    let binder = new PairDetailList()
+    return this.callGet(url, binder)
   }
 }
