@@ -25,4 +25,8 @@ export default class Api extends Base {
     let binder = new PairDetailList()
     return this.callGet(url, binder)
   }
+
+  justCall(url) {
+    return this.callGet(url)
+  }
 }

@@ -4,7 +4,8 @@ import {
   Dimensions, 
   Text, 
   ActivityIndicator,
-  TouchableOpacity
+  TouchableOpacity,
+  Button
 } from 'react-native'
 import PhotoView from 'react-native-photo-view'
 import Carousel from 'react-native-snap-carousel'
@@ -13,9 +14,19 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 const itemWidth = Dimensions.get('window').width
 const itemHeight = Dimensions.get('window').height
+
+var refreshBridge = null
+
 export default class PairCharts extends React.PureComponent {
   static navigationOptions = ({ navigation }) => ({
-    title: navigation.state.params.title
+    title: navigation.state.params.title,
+    headerRight: (
+      <TouchableOpacity 
+        style={{ marginRight: 16 }}
+        onPress={() => { if (refreshBridge) refreshBridge() }}>
+        <Icon name="ios-refresh" color="#FFABAB" size={24} />
+      </TouchableOpacity>
+    )
   })
 
   state = {
@@ -27,13 +38,29 @@ export default class PairCharts extends React.PureComponent {
   api = Api.instance()
   
   componentDidMount() {
+    refreshBridge = this.refresh
+
     const url = this.props.navigation.getParam("url")
     this.api.getPairCharts(url).then(images => {
-      this.setState({ 
+      this.setState({
+        currentImageIndex: 0,
         presentTitle: images[0].title,
         images 
       })
     })
+  }
+
+  refresh = () => {
+    setTimeout(() => {
+      const url = this.props.navigation.getParam("url")
+      const currentIndex = this.state.currentImageIndex
+      this.api.getPairCharts(url).then(images => {
+        this.setState({ 
+          presentTitle: images[currentIndex].title,
+          images 
+        })
+      })
+    }, 1000)
   }
 
   onSnapToItem = (index) => {
@@ -52,13 +79,38 @@ export default class PairCharts extends React.PureComponent {
     this.carousel.snapToPrev(true)
   }
 
-  renderAction(title) {
+  pressNo = () => {
+    let currentImage = this.state.images[this.state.currentImageIndex]
+    alert(currentImage)
+    this.api.justCall(currentImage.buttonNoUrl)
+    this.refresh()
+  }
+
+  pressBuy = () => {
+    let currentImage = this.state.images[this.state.currentImageIndex]
+    this.api.justCall(currentImage.buttonBuyOnlyUrl)
+    this.refresh()
+  }
+
+  pressSell = () => {
+    let currentImage = this.state.images[this.state.currentImageIndex]
+    this.api.justCall(currentImage.buttonSellOnlyUrl)
+    this.refresh()
+  }
+
+  pressAll = () => {
+    let currentImage = this.state.images[this.state.currentImageIndex]
+    this.api.justCall(currentImage.buttonALlInUrl)
+    this.refresh()
+  }
+
+  renderAction(title, action) {
     return (
       <TouchableOpacity style={{
         flex: 1,
         height: 60,
         justifyContent: 'center'
-      }}>
+      }} onPress={action}>
         <View style={{
           alignSelf: 'center',
           justifyContent: 'center',
@@ -87,10 +139,10 @@ export default class PairCharts extends React.PureComponent {
         marginLeft: 16,
         marginRight: 16,
       }} >
-        {this.renderAction("No")}
-        {this.renderAction("Buy Only")}
-        {this.renderAction("Sell Only")}
-        {this.renderAction("All In")}
+        {this.renderAction("No", this.pressNo)}
+        {this.renderAction("Buy Only", this.pressBuy)}
+        {this.renderAction("Sell Only", this.pressSell)}
+        {this.renderAction("All In", this.pressAll)}
       </View>
     )
   }
