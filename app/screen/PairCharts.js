@@ -109,7 +109,7 @@ export default class PairCharts extends React.PureComponent {
         flex: 1,
         height: 60,
         justifyContent: 'center'
-      }} onPress={action} disabled={!enable}>
+      }} onPress={action}>
         <View style={{
           alignSelf: 'center',
           justifyContent: 'center',
