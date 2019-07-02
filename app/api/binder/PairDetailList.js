@@ -2,9 +2,8 @@ export default class PairDetailList {
   bind(input) {
     if (input) {
       const items = input.photo_album_items
-      const data = items.data
 
-      const list = data.map(i => {
+      const list = items.map(i => {
         return {
           id: i.id,
           title: i.photo_name,

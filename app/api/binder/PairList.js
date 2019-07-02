@@ -2,9 +2,8 @@ export default class PairList {
   bind(input) {
     if (input) {
       const items = input.menu_items
-      const data = items.data
 
-      const pairList = data.map(i => {
+      const pairList = items.map(i => {
         return {
           id: i.id,
           title: i.title,
